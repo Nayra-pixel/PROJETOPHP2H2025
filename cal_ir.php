@@ -1,7 +1,6 @@
 <?php 
    
-   $salbrut = 2500.00; 
-   GLOBAL $alq, $desc, $saliq, $salbrut;
+   $salbrut = 4664;
 
    if($salbrut >= 2428.81 && $salbrut <= 2826.65){
       $alq = 7.5;
@@ -19,22 +18,28 @@
       $alq = 0;
    }
 
-   function desc($salbrut, $alq){
+   function desc($salbrut){
+      GLOBAL $alq, $desc;
       $desc = $salbrut * ($alq / 100);
       return($desc);
    }
 
-   function saliq($desc, $salbrut){
+   function saliq($salbrut,$desc){
+      GLOBAL $saliq;
       $saliq = $salbrut - $desc;
       return($saliq);
    }
 
-   desc($salbrut);
-   saliq($desc, $salbrut);
-   echo ("Salário Bruto: R$" . $salbrut .
+   function exibir($salbrut,$desc,$alq,$saliq){
+      echo ("Salário Bruto: R$" . $salbrut .
       "<br>Porcentagem de Desconto: " . $alq . "%" .
       "<br>Valor do Desconto: R$" . $desc .
       "<br>Salário Líquido a Receber: R$" . $saliq);
+   }
+
+   desc($salbrut);
+   saliq($salbrut,$desc);
+   exibir($salbrut,$desc,$alq,$saliq);
 
 
  ?>
